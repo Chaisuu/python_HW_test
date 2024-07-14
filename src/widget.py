@@ -19,3 +19,6 @@ def mask_account_card(numbers: str) -> str:
 
     return result
 
+def get_date (date:str) -> str:
+    data_format = date[0:10].split("-")
+    return ".".join(data_format[::-1])
