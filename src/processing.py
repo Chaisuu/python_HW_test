@@ -8,17 +8,31 @@ list_of_dicts = [
 ]
 
 
-def filter_by_state(list_of_dict: list[dict[str, Any]], state: str = "EXECUTED") -> Any:
+def filter_by_state(list_of_dict: list[dict[str, Any]], state: str = "EXECUTED") -> list[dict[str, Any]]:
+    """
+     Фильтрует список словарей по значению ключа 'state'.
+    :param list_of_dicts: Список словарей с данными о банковских операциях.
+    :param state: Значение ключа 'state' для фильтрации. По умолчанию 'EXECUTED'.
+    :return:овый список словарей, содержащий только те словари, у которых ключ 'state' содержит переданное значение.
+    """
     return [d for d in list_of_dict if d.get("state") == state]
 
 
+
+
 def sort_by_date(
-    list_of_dict: list[dict[str, Any]], reverse: bool = True
+        list_of_dict: list[dict[str, Any]], reverse: bool = True
 ) -> list[dict[str, Any]]:
+    """
+    Функция принимает на вход список словарей и возвращает новый список,отсортированыq по убыванию даты
+    :param list_of_dict: список словарей с датами
+    :param reverse: значение для фильтрации date  в новом словаре
+    :return: отсортированный список словарей
+    """
 
     sorted_list = sorted(
         list_of_dict,
-        key=lambda new_list_of_dict: new_list_of_dict["date"],
+        key=lambda new_dict: new_dict["date"],
         reverse=reverse,
     )
     return sorted_list
