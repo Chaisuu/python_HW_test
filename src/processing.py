@@ -15,9 +15,8 @@ def filter_by_state(list_of_dict: list[dict[str, Any]], state: str = "EXECUTED")
     :param state: Значение ключа 'state' для фильтрации. По умолчанию 'EXECUTED'.
     :return:овый список словарей, содержащий только те словари, у которых ключ 'state' содержит переданное значение.
     """
+
     return [d for d in list_of_dict if d.get("state") == state]
-
-
 
 
 def sort_by_date(
@@ -30,9 +29,5 @@ def sort_by_date(
     :return: отсортированный список словарей
     """
 
-    sorted_list = sorted(
-        list_of_dict,
-        key=lambda new_dict: new_dict["date"],
-        reverse=reverse,
-    )
+    sorted_list = sorted(list_of_dict, key=lambda x: x["date"], reverse=reverse, )
     return sorted_list
