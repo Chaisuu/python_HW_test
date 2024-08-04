@@ -3,8 +3,6 @@ import pytest
 from src.widget import get_date
 
 
-
-
 @pytest.mark.parametrize("data, expected", [
     ("2018-07-11T02:26:18.671407", "11.07.2018"),
     ("2018-10-14T08:21:33.419441", "14.10.2018"),

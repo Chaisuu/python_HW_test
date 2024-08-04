@@ -11,7 +11,7 @@ list_of_dicts = [
 def filter_by_state(list_of_dict: list[dict[str, Any]], state: str = "EXECUTED") -> list[dict[str, Any]]:
     """
      Фильтрует список словарей по значению ключа 'state'.
-    :param list_of_dicts: Список словарей с данными о банковских операциях.
+    :param list_of_dict:
     :param state: Значение ключа 'state' для фильтрации. По умолчанию 'EXECUTED'.
     :return:овый список словарей, содержащий только те словари, у которых ключ 'state' содержит переданное значение.
     """

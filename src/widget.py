@@ -7,7 +7,9 @@ def get_mask_account(card_number: str) -> str:
     """Функция которая маскирует номер счета"""
     return "**" + card_number[-4:]
 
+
 def mask_account_card(numbers: str) -> str:
+    global result
     if len(numbers.split()[1]) == 16:
         new_card_mask = get_mask_card_number(numbers.split()[1])
         result = f'{numbers[:-16]}{new_card_mask}'
@@ -19,6 +21,7 @@ def mask_account_card(numbers: str) -> str:
 
     return result
 
-def get_date (date:str) -> str:
+
+def get_date(date: str) -> str:
     data_format = date[0:10].split("-")
     return ".".join(data_format[::-1])
