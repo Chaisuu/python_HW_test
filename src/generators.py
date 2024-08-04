@@ -4,7 +4,7 @@ from typing import Generator, Any
 
 def filter_by_currency(transactions: list, currency_code: str = "USD") -> Generator[Any, Any, Any]:
     """Функция выдает транзакции, где валюта операции соответствует заданной."""
-    if transactions == []:
+    if not transactions:
         sys.exit("Нет транзакций")
     for i in transactions:
         if i.get("operationAmount").get("currency").get("code") != currency_code:
