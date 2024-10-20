@@ -1,4 +1,7 @@
-def log(filename=""):
+from typing import Callable, Any
+
+
+def log(filename="") -> Callable[[Any], Callable[[tuple[Any, ...], dict[str, Any]], None]]:
     """Декоратор для логирования функций"""
 
     def wrapper(my_func):
