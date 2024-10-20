@@ -1,22 +1,33 @@
-def mask_account_card(acc_card_number: str) -> str:
-    """Функция скрытия номера карты или номера счета"""
-
-    if "Счет" in acc_card_number and acc_card_number != "":
-        masked_info_list = "Счет ", "**", acc_card_number[-4:]
-        masked_info = "".join(masked_info_list)
-        return masked_info
-    if "Счет" not in acc_card_number and acc_card_number != "":
-        num_index = ""
-        for symb in acc_card_number:
-            if symb.isdigit():
-                num_index = acc_card_number.find(symb)
-                break
-        bank_card = acc_card_number.replace(acc_card_number[(num_index + 6) : (num_index + 12)], "******")
-        return bank_card
-    return "Введите номер карты или счет"
+from src.masks import get_mask_account, get_mask_card_number
 
 
-def get_date(system_date: str) -> str:
-    """Функция получения даты из системных данных"""
-    date = f"{system_date[8:10]}.{system_date[5:7]}.{system_date[0:4]}"
-    return date
+def mask_account_card(info: str) -> str:
+    """Функция принимает строку с типом карты/счета и номер и возвращает строку с замаскированным номером"""
+    letters = ""
+    digits = ""
+
+    for char in info:  # Разделение букв и цифр из исходной строки
+        if char.isdigit():
+            digits += char
+        elif char.isalpha() or char.isspace():
+            letters += char
+
+    letters = letters.rstrip()  # Убираем лишние пробелы в конце строки
+
+    if info.lower().startswith("счет"):  # Определяем, маскировать номер счета или карты
+        masked_number = get_mask_account(digits)
+    else:
+        masked_number = get_mask_card_number(digits)
+
+    return f"{letters} {masked_number}"
+
+
+# print(mask_account_card("Visa Platinum 7000 7922 8960 6361"))
+# print(mask_account_card("Счет 73654108430135874305"))
+
+
+def get_data(date_str: str) -> str:
+    """Функция преобразует строку из формата 2018-07-11T02:26:18.671407 в формат 11.07.2018"""
+    date_part = date_str.split("T")[0]  # Разделяем строку по символу "T"
+    year, month, day = date_part.split("-")  # Разделяем дату через "-"
+    return f"{day}.{month}.{year}"  # Возвращаем строку в нужном формате

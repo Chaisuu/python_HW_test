@@ -20,5 +20,6 @@ def test_get_mask_card_number(card_number, expected_result):
     (73654108430135874308, '** 4308'),
 ])
 
-def test_get_mask_account (card_number, result):
+def test_get_mask_account(card_number, result):
+
     assert get_mask_account(card_number) == result
