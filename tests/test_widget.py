@@ -1,34 +1,38 @@
 import pytest
+from src.widget import mask_account_card, get_date
 
-from src.widget import get_data, mask_account_card
 
-
-# Тест для проверки работы функций для маскирования номеров счетов/карт
 @pytest.mark.parametrize(
-    "input_data, expected_output",
+    "user_input, expected",
     [
-        ("Visa Platinum 7000 7922 8960 6361", "Visa Platinum 7000 79** **** 6361"),
-
-        ("Maestro 1596837868705199", "Maestro 1596 83** **** 5199"),
-
-        ("Visa Classic 6831982476737658", "Visa Classic 6831 98** **** 7658"),
-        ("Visa Platinum 8990922113665229", "Visa Platinum 8990 92** **** 5229"),
-        ("Visa Gold 5999414228426353", "Visa Gold 5999 41** **** 6353"),
+        ("Maestro 7000792289606361", "Maestro 700079******6361"),
+        ("Visa 7000792289606361", "Visa 700079******6361"),
+        ("Mir 7289094321672902", "Mir 728909******2902"),
+        ("Счет 8432014830921482304", "Счет **2304"),
     ],
 )
-def test_mask_account_card(input_data, expected_output):
-    assert mask_account_card(input_data) == expected_output
+def test_uni_mask_account_card(user_input, expected):
+    assert mask_account_card(user_input) == expected
 
 
-# Тест для проверки работы функци, которая конвертирует дату и время в определенный формат
 @pytest.mark.parametrize(
-    "input_date, expected_output",
+    "user_input, expected",
     [
-        ("2018-07-11T02:26:18.671407", "11.07.2018"),
-        ("2020-01-01T00:00:00.000000", "01.01.2020"),
-        ("1999-12-31T23:59:59.999999", "31.12.1999"),
-        ("2023-06-15T10:30:45.123456", "15.06.2023"),
+        ("", "Введите номер карты или счет"),
     ],
 )
-def test_get_data(input_date, expected_output):
-    assert get_data(input_date) == expected_output
+def test_empty_mask_account_card(user_input, expected):
+    assert mask_account_card(user_input) == expected
+
+
+@pytest.fixture
+def test_right_get_date():
+    return "2024-03-11T02:26:18.671407"
+
+def test_get_date(test_right_get_date):
+    assert get_date(test_right_get_date) == "11.03.2024"
+
+
+@pytest.fixture
+def test_get_date():
+    assert get_date("") == "Нет данных о дате"
