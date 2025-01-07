@@ -15,24 +15,31 @@ get_mask_account - Функция которая возвращает маску
 get_date - функция которая проебразует дату.
 get_read_json - фукнция которая возварщает список словарей в заданном пути
 get_amount_transactions - функция которая возвращает сумму в рублях
-get_amount_convert -  фнукция которая делает конвертацию по api из USD, EUR в RUB
+get_amount_convert -  функция которая делает конвертацию по api из USD, EUR в RUB
+reader_csv 
+reader_excel
 *** 
 Тесты
 ***
-test.mask.py - тестирует функции get_mask_card_number и get_mask_account
-test.widget - тестирует функции get_mask_card_number, get_mask_account  и get_date
-test.processing - тестирует функции filter_by_state и sort_by_date
-test.generator - тестирует функции filter_by_currency, card_number_generator и transaction_descriptions
+test_mask.py - тестирует функции get_mask_card_number и get_mask_account
+test_widget - тестирует функции get_mask_card_number, get_mask_account  и get_date
+test_processing - тестирует функции filter_by_state и sort_by_date
+test_generator - тестирует функции filter_by_currency, card_number_generator и transaction_descriptions
 test_get_read_json - тест фукнции  get_read_json
 test_get_amount_transactions - тест фукнции get_amount_transactions
 test_get_amount_convert - тест функции get_amount_convert
+test_reader_excel
+test_reader_csv
 ***
 Генератор
 ***
 filter_by_currency - функция которая возращает интератор
 transaction_descriptions - функция-генератордля генерации значений по запросу
 card_number_generator - функция-генератор, принимает значение start и stop
-
+***
+Логирование
+***
+добавлено логирование следующих модулей  external_api и utils1, логи выволяться в папку logs
 ## Установка:
 
 1. Клонируйте репозиторий:

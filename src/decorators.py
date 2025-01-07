@@ -1,3 +1,4 @@
+def log(filename=""):
     """Декоратор для логирования функций"""
 
     def wrapper(my_func):
